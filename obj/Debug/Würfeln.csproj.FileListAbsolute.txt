@@ -1,0 +1,10 @@
+C:\Users\snohn\source\repos\Würfeln\bin\Debug\Würfeln.exe.config
+C:\Users\snohn\source\repos\Würfeln\bin\Debug\Würfeln.exe
+C:\Users\snohn\source\repos\Würfeln\bin\Debug\Würfeln.pdb
+C:\Users\snohn\source\repos\Würfeln\obj\Debug\Würfeln.csprojAssemblyReference.cache
+C:\Users\snohn\source\repos\Würfeln\obj\Debug\Würfeln.Form1.resources
+C:\Users\snohn\source\repos\Würfeln\obj\Debug\Würfeln.Properties.Resources.resources
+C:\Users\snohn\source\repos\Würfeln\obj\Debug\Würfeln.csproj.GenerateResource.cache
+C:\Users\snohn\source\repos\Würfeln\obj\Debug\Würfeln.csproj.CoreCompileInputs.cache
+C:\Users\snohn\source\repos\Würfeln\obj\Debug\Würfeln.exe
+C:\Users\snohn\source\repos\Würfeln\obj\Debug\Würfeln.pdb
