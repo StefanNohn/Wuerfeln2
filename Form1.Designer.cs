@@ -1,4 +1,6 @@
-﻿namespace Würfeln
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Würfeln
 {
     partial class Form1
     {
@@ -56,14 +58,14 @@
             this.LabelSpieler4Punkte = new System.Windows.Forms.Label();
             this.LabelPunkteAnz4 = new System.Windows.Forms.Label();
             this.LabelSpieler4Runde = new System.Windows.Forms.Label();
-            this.Dice6 = new Würfeln.Dice();
-            this.Dice5 = new Würfeln.Dice();
-            this.Dice4 = new Würfeln.Dice();
-            this.Dice3 = new Würfeln.Dice();
-            this.Dice2 = new Würfeln.Dice();
-            this.Dice1 = new Würfeln.Dice();
             this.ButtonWeiterWürfeln = new System.Windows.Forms.Button();
             this.LabelNachrichten = new System.Windows.Forms.Label();
+            this.Dice1 = new Dice('X');
+            this.Dice2 = new Dice('X');
+            this.Dice3 = new Dice('X');
+            this.Dice4 = new Dice('X');
+            this.Dice5 = new Dice('X');
+            this.Dice6 = new Dice('X');
             this.SuspendLayout();
             // 
             // LabelSpieler1
@@ -357,6 +359,7 @@
             // 
             // Dice6
             // 
+            this.Dice6.BackColor = System.Drawing.Color.LightGray;
             this.Dice6.Location = new System.Drawing.Point(196, 111);
             this.Dice6.Name = "Dice6";
             this.Dice6.Size = new System.Drawing.Size(30, 30);
@@ -368,6 +371,7 @@
             // 
             // Dice5
             // 
+            this.Dice5.BackColor = System.Drawing.Color.LightGray;
             this.Dice5.Location = new System.Drawing.Point(160, 111);
             this.Dice5.Name = "Dice5";
             this.Dice5.Size = new System.Drawing.Size(30, 30);
@@ -379,6 +383,7 @@
             // 
             // Dice4
             // 
+            this.Dice4.BackColor = System.Drawing.Color.LightGray;
             this.Dice4.Location = new System.Drawing.Point(124, 111);
             this.Dice4.Name = "Dice4";
             this.Dice4.Size = new System.Drawing.Size(30, 30);
@@ -390,6 +395,7 @@
             // 
             // Dice3
             // 
+            this.Dice3.BackColor = System.Drawing.Color.LightGray;
             this.Dice3.Location = new System.Drawing.Point(87, 111);
             this.Dice3.Name = "Dice3";
             this.Dice3.Size = new System.Drawing.Size(30, 30);
@@ -401,6 +407,7 @@
             // 
             // Dice2
             // 
+            this.Dice2.BackColor = System.Drawing.Color.LightGray;
             this.Dice2.Location = new System.Drawing.Point(51, 111);
             this.Dice2.Name = "Dice2";
             this.Dice2.Size = new System.Drawing.Size(30, 30);
@@ -412,6 +419,7 @@
             // 
             // Dice1
             // 
+            this.Dice1.BackColor = System.Drawing.Color.LightGray;
             this.Dice1.Location = new System.Drawing.Point(15, 111);
             this.Dice1.Name = "Dice1";
             this.Dice1.Size = new System.Drawing.Size(30, 30);
@@ -427,7 +435,7 @@
             this.ButtonWeiterWürfeln.Name = "ButtonWeiterWürfeln";
             this.ButtonWeiterWürfeln.Size = new System.Drawing.Size(168, 28);
             this.ButtonWeiterWürfeln.TabIndex = 49;
-            this.ButtonWeiterWürfeln.Text = "weiterwürfeln";
+            this.ButtonWeiterWürfeln.Text = "Würfeln";
             this.ButtonWeiterWürfeln.UseVisualStyleBackColor = true;
             this.ButtonWeiterWürfeln.Click += new System.EventHandler(this.ButtonWeiterWürfeln_Click);
             // 
