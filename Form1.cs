@@ -314,16 +314,25 @@ namespace Würfeln
             return a;
         }
 
+        
         private void ButtonWeiterWürfeln_Click(object sender, EventArgs e)
         {
-            if (GetAnzahl() > Anzahl)
+            if (GetAnzahl() > Anzahl || GetAnzahl()==0)
             {
                 if (Dice1.BackColor == Color.Red) Dice1.Used = true;
                 if (Dice2.BackColor == Color.Red) Dice2.Used = true;
                 if (Dice3.BackColor == Color.Red) Dice3.Used = true;
                 if (Dice4.BackColor == Color.Red) Dice4.Used = true;
                 if (Dice5.BackColor == Color.Red) Dice5.Used = true;
-                if (Dice6.BackColor == Color.Red) Dice6.Used = true;
+                if (Dice6.BackColor == Color.Red) Dice6.Used = true;                
+
+                if (Dice1.BackColor == Color.LightGray) Dice1.Text = Convert.ToString(Dice.NeueZahl());
+                if (Dice2.BackColor == Color.LightGray) Dice2.Text = Convert.ToString(Dice.NeueZahl());
+                if (Dice3.BackColor == Color.LightGray) Dice3.Text = Convert.ToString(Dice.NeueZahl());
+                if (Dice4.BackColor == Color.LightGray) Dice4.Text = Convert.ToString(Dice.NeueZahl());
+                if (Dice5.BackColor == Color.LightGray) Dice5.Text = Convert.ToString(Dice.NeueZahl());
+                if (Dice6.BackColor == Color.LightGray) Dice6.Text = Convert.ToString(Dice.NeueZahl());
+
                 LabelNachrichten.Text = "";
             }
             else LabelNachrichten.Text = "Es muss ein Würfel gewertet werden!";
