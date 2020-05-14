@@ -9,8 +9,16 @@ namespace Würfeln
 {
     public class Spieler
     {
-        private List<Spieler> Namesliste = new List<Spieler>();
+        private List<Spieler> Namesliste = new List<Spieler>()
+        {
+            
+        };
 
+        //private struct Übersicht      Die Klasse stellt an sich schon eine bessere Struktur und Wertesammlung dar...
+        //{
+        //    string Name;
+        //    List<int> Punkte;    
+        //}
         public delegate void Punktannahme(int Punkte, int Liste);
         private Punktannahme Punkteannahme = null;
         public void Punkteschreiben(Punktannahme a)
@@ -58,11 +66,26 @@ namespace Würfeln
             set { _Name = value; }
         }
 
-        public Spieler(string a, Punktannahme b, Punkteauslesen c)
+        public Spieler(string a, Punktannahme b, Punkteauslesen c, Form1 d)
         {
             Name = a;
             Punkteschreiben(b);
             Punktegesamtlesen(c);
+            switch (a)
+            {
+                case "Spieler5":
+                    Label d.LabelSpieler5 = new System.Windows.Forms.Label();
+                    d.LabelSpieler5.AutoSize = true;
+                    d.LabelSpieler5.Location = new System.Drawing.Point(12, 9);
+                    d.LabelSpieler5.Name = "LabelSpieler1";
+                    d.LabelSpieler5.Size = new System.Drawing.Size(98, 13);
+                    d.LabelSpieler5.TabIndex = 0;
+                    d.LabelSpieler5.Text = "Spieler 5 auto";
+                    d.LabelSpieler5.Leave += new System.EventHandler(this.LabelSpieler5_Leave);
+                    d.LabelSpieler5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSpieler1_MouseClick);
+                    d.Controls.Add(d.LabelSpieler5);
+                    break;
+            }
         }
     }
 }

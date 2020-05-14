@@ -20,7 +20,9 @@ namespace Würfeln
             TextBoxSpieler2.Visible = false;
             TextBoxSpieler3.Visible = false;
             TextBoxSpieler4.Visible = false;
-            Spieler Spieler1 = new Spieler("Spieler1", PunkteAufListeSchreiben, GesamtPunkteLesen);
+            Spieler Spieler1 = new Spieler("Spieler1", PunkteAufListeSchreiben, GesamtPunkteLesen, this);
+            Spieler Spieler5 = new Spieler("Spieler5", PunkteAufListeSchreiben, GesamtPunkteLesen, this);
+            
         }
 
         private List<int> PunkteSpieler1 = new List<int>();
@@ -28,7 +30,9 @@ namespace Würfeln
         private List<int> PunkteSpieler3 = new List<int>();
         private List<int> PunkteSpieler4 = new List<int>();
 
-         
+        
+     
+
         private int GesamtPunkteLesen(int Liste)
         {
             int PunkteGesamt = 0;
@@ -317,14 +321,15 @@ namespace Würfeln
         
         private void ButtonWeiterWürfeln_Click(object sender, EventArgs e)
         {
-            if (GetAnzahl() > Anzahl || GetAnzahl()==0)
+            
+            if (GetAnzahl() > Anzahl || GetAnzahl() == 0)
             {
                 if (Dice1.BackColor == Color.Red) Dice1.Used = true;
                 if (Dice2.BackColor == Color.Red) Dice2.Used = true;
                 if (Dice3.BackColor == Color.Red) Dice3.Used = true;
                 if (Dice4.BackColor == Color.Red) Dice4.Used = true;
                 if (Dice5.BackColor == Color.Red) Dice5.Used = true;
-                if (Dice6.BackColor == Color.Red) Dice6.Used = true;                
+                if (Dice6.BackColor == Color.Red) Dice6.Used = true;
 
                 if (Dice1.BackColor == Color.LightGray) Dice1.Text = Convert.ToString(Dice.NeueZahl());
                 if (Dice2.BackColor == Color.LightGray) Dice2.Text = Convert.ToString(Dice.NeueZahl());
