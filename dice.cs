@@ -15,6 +15,9 @@ namespace Würfeln
 {
     public class Dice : Button
     {
+        public Dice()
+        { }
+
         public Dice(char a)
         {
             Width = 30;
