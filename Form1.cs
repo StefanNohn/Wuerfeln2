@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+//using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -223,7 +225,7 @@ namespace Würfeln
                 Stempel.TabIndex = 0;
                 Stempel.Text = ListeSpieler[AngelegterSpieler].Name;
                 Stempel.Leave += new System.EventHandler(this.LabelSpieler1_Leave);
-                Stempel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSpieler1_MouseClick);
+                Stempel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSpieler_MouseClick);
                 ListeLabelSpieler[AngelegterSpieler] = Stempel;               
                 this.Controls.Add(ListeLabelSpieler[AngelegterSpieler]);
 
@@ -240,7 +242,7 @@ namespace Würfeln
                 Stempel1.Name = ListeComboBoxSpieler[AngelegterSpieler].Name;
                 Stempel1.Size = new System.Drawing.Size(92, 21);
                 Stempel1.TabIndex = 9;
-                Stempel1.SelectedValueChanged += new System.EventHandler(this.ComboBoxSpieler1_SelectedValueChanged);
+                Stempel1.SelectedValueChanged += new System.EventHandler(this.ComboBoxSpieler_SelectedValueChanged);
                 ListeComboBoxSpieler[AngelegterSpieler] = Stempel1;
                 this.Controls.Add(ListeComboBoxSpieler[AngelegterSpieler]);
 
@@ -251,7 +253,6 @@ namespace Würfeln
                 Stempel2.TabIndex = 0;
                 Stempel2.Text = "Runde: ";
                 Stempel2.Leave += new System.EventHandler(this.LabelSpieler1_Leave);
-                Stempel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSpieler1_MouseClick);
                 ListeLabelRunde[AngelegterSpieler] = Stempel2;
                 this.Controls.Add(ListeLabelRunde[AngelegterSpieler]);
 
@@ -262,7 +263,6 @@ namespace Würfeln
                 Stempel3.TabIndex = 0;
                 Stempel3.Text = $"{Runde}";
                 Stempel3.Leave += new System.EventHandler(this.LabelSpieler1_Leave);
-                Stempel3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSpieler1_MouseClick);
                 ListeLabelRunde[AngelegterSpieler] = Stempel3;
                 this.Controls.Add(ListeLabelRunde[AngelegterSpieler]);
 
@@ -272,8 +272,7 @@ namespace Würfeln
                 Stempel4.Name = ListeLabelPunkte[AngelegterSpieler].Name;
                 Stempel4.TabIndex = 0;
                 Stempel4.Text = "Punkte: ";
-                Stempel4.Leave += new System.EventHandler(this.LabelSpieler1_Leave);
-                Stempel4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSpieler1_MouseClick);
+                Stempel4.Leave += new System.EventHandler(this.LabelSpieler1_Leave);               
                 ListeLabelPunkte[AngelegterSpieler] = Stempel4;
                 this.Controls.Add(ListeLabelPunkte[AngelegterSpieler]);
 
@@ -285,7 +284,6 @@ namespace Würfeln
                 Stempel5.TextAlign = System.Drawing.ContentAlignment.TopRight;
                 Stempel5.Text = "123456";
                 Stempel5.Leave += new System.EventHandler(this.LabelSpieler1_Leave);
-                Stempel5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSpieler1_MouseClick);
                 ListeLabelPunkteAnzeige[AngelegterSpieler] = Stempel5;
                 this.Controls.Add(ListeLabelPunkteAnzeige[AngelegterSpieler]);
                                
@@ -339,158 +337,59 @@ namespace Würfeln
                 //    break;
             }        
         }
-        
-        
-        private void LabelSpieler1_MouseClick(object sender, MouseEventArgs e)
+
+        private int WerIstSender(object sender)
         {
+            string a = sender.ToString();
+            int d = 0;
+            d = (a[a.Length - 1]);
+            if (d != 0) return d - 1;
+            else return 9;
+        }
+        private void LabelSpieler_MouseClick(object sender, MouseEventArgs e)
+        {
+            int Sender= WerIstSender(sender);
             //if (ComboBoxSpieler1.SelectedIndex == 0)    Erlaubt nur die Benennung eines menschlichen Spielers, nimmt aber Moeglichkeiten und evtl. Spassfaktor
             //{
-                TextBoxSpieler1.Location = new Point(12, 9);
-                TextBoxSpieler1.Text = LabelSpieler1.Text;
-                TextBoxSpieler1.Visible = true;
-                TextBoxSpieler1.AcceptsReturn = false;
+            ListeTextBoxSpieler[Sender].Location = new Point(P1, Reihe + 24 * AngelegterSpieler);
+            ListeTextBoxSpieler[Sender].Text = ListeLabelSpieler[Sender].Text;
+            ListeTextBoxSpieler[Sender].Visible = true;
+            ListeTextBoxSpieler[Sender].AcceptsReturn = false;
             //}
         }             
-        private void TextBoxSpieler1_KeyDown(object sender, KeyEventArgs e)
-        {            
+        private void TextBoxSpieler_KeyDown(object sender, KeyEventArgs e)
+        {
+            int Sender = WerIstSender(sender);
             if (e.KeyCode == Keys.Enter)
             {
-                if (TextBoxSpieler1.Text.Length >= 1) { LabelSpieler1.Text = TextBoxSpieler1.Text; }
-                else LabelSpieler1.Text = "Ohne Namen 1";
-                TextBoxSpieler1.Visible = false;
+                if (ListeTextBoxSpieler[Sender].Text.Length >= 1) { ListeLabelSpieler[Sender].Text = ListeTextBoxSpieler[Sender].Text; }
+                else ListeLabelSpieler[Sender].Text = "Ohne Namen";
+                ListeTextBoxSpieler[Sender].Visible = false;
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }            
         }
-        private void ComboBoxSpieler1_SelectedValueChanged(object sender, EventArgs e)
+        private void ComboBoxSpieler_SelectedValueChanged(object sender, EventArgs e)
         {
-            switch (ComboBoxSpieler1.SelectedIndex)
+            int Sender = WerIstSender(sender);
+            switch (ListeComboBoxSpieler[Sender].SelectedIndex)
             {
                 case 0:
-                    //LabelSpieler1.Text = "Mensch 1";
+                    // ListeLabelSpieler[Sender].Text = "Mensch 1";
                     break;
                 case 1:
-                    LabelSpieler1.Text = "KI-ängstlich";
+                    ListeLabelSpieler[Sender].Text = "KI-ängstlich";
                     break;
                 case 2:
-                    LabelSpieler1.Text = "KI-normal";
+                    ListeLabelSpieler[Sender].Text = "KI-normal";
                     break;
                 case 3:
-                    LabelSpieler1.Text = "KI-risiko";
+                    ListeLabelSpieler[Sender].Text = "KI-risiko";
                     break;               
             }
         }
        
 
-        private void LabelSpieler2_MouseClick(object sender, MouseEventArgs e)
-        {
-            TextBoxSpieler2.Location = new Point(12, 31);
-            TextBoxSpieler2.Text = LabelSpieler2.Text;
-            TextBoxSpieler2.Visible = true;
-            TextBoxSpieler2.AcceptsReturn = false;
-        }
-        private void TextBoxSpieler2_KeyDown(object sender, KeyEventArgs e)
-        {
-           
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (TextBoxSpieler2.Text.Length >= 1) { LabelSpieler2.Text = TextBoxSpieler2.Text; }
-                else LabelSpieler2.Text = "Ohne Namen 2";
-                TextBoxSpieler2.Visible = false;
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-            }
-        }
-        private void ComboBoxSpieler2_SelectedValueChanged(object sender, EventArgs e)
-        {
-            switch (ComboBoxSpieler2.SelectedIndex)
-            {
-                case 0:
-                    //LabelSpieler2.Text = "Mensch";
-                    break;
-                case 1:
-                    LabelSpieler2.Text = "KI-ängstlich";
-                    break;
-                case 2:
-                    LabelSpieler2.Text = "KI-normal";
-                    break;
-                case 3:
-                    LabelSpieler2.Text = "KI-risiko";
-                    break;
-            }
-        }
-
-        private void LabelSpieler3_MouseClick(object sender, MouseEventArgs e)
-        {
-            TextBoxSpieler3.Location = new Point(12, 53);
-            TextBoxSpieler3.Text = LabelSpieler3.Text;
-            TextBoxSpieler3.Visible = true;
-            TextBoxSpieler3.AcceptsReturn = false;
-        }
-        private void TextBoxSpieler3_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (TextBoxSpieler3.Text.Length >= 1) { LabelSpieler3.Text = TextBoxSpieler3.Text; }
-                else LabelSpieler1.Text = "Ohne Namen 3";
-                TextBoxSpieler3.Visible = false;
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-            }
-        }
-        private void ComboBoxSpieler3_SelectedValueChanged(object sender, EventArgs e)
-        {
-            switch (ComboBoxSpieler3.SelectedIndex)
-            {
-                case 0:
-                    break;
-                case 1:
-                    LabelSpieler3.Text = "KI-ängstlich";
-                    break;
-                case 2:
-                    LabelSpieler3.Text = "KI-normal";
-                    break;
-                case 3:
-                    LabelSpieler3.Text = "KI-risiko";
-                    break;
-            }
-        }
-
-        private void LabelSpieler4_MouseClick(object sender, EventArgs e)
-        {
-            TextBoxSpieler4.Location = new Point(12, 75);
-            TextBoxSpieler4.Text = LabelSpieler4.Text;
-            TextBoxSpieler4.Visible = true;
-            TextBoxSpieler4.AcceptsReturn = false;
-        }
-        private void TextBoxSpieler4_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (TextBoxSpieler4.Text.Length >= 1) { LabelSpieler4.Text = TextBoxSpieler4.Text; }
-                else LabelSpieler4.Text = "Ohne Namen 4";
-                TextBoxSpieler4.Visible = false;
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-            }
-        }
-        private void ComboBoxSpieler4_SelectedValueChanged(object sender, EventArgs e)
-        {
-            switch (ComboBoxSpieler4.SelectedIndex)
-            {
-                case 0:
-                    break;
-                case 1:
-                    LabelSpieler4.Text = "KI-ängstlich";
-                    break;
-                case 2:
-                    LabelSpieler4.Text = "KI-normal";
-                    break;
-                case 3:
-                    LabelSpieler4.Text = "KI-risiko";
-                    break;
-            }
-        }
 
         private void ComboBoxSpieler1_Leave(object sender, EventArgs e)
         {
