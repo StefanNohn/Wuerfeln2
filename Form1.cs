@@ -19,16 +19,16 @@ namespace Würfeln
         {
             InitializeComponent();
 
-            Spieler Spieler1 = new Spieler("Spieler1", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
-            Spieler Spieler2 = new Spieler("Spieler2", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
-            Spieler Spieler3 = new Spieler("Spieler3", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
-            Spieler Spieler4 = new Spieler("Spieler4", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
-            Spieler Spieler5 = new Spieler("Spieler5", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
-            Spieler Spieler6 = new Spieler("Spieler6", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
-            Spieler Spieler7 = new Spieler("Spieler7", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
-            Spieler Spieler8 = new Spieler("Spieler8", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
-            Spieler Spieler9 = new Spieler("Spieler9", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
-            Spieler Spieler10 = new Spieler("Spieler10", PunkteAufListeSchreiben, GesamtPunkteLesen/*, this*/);
+            Spieler Spieler1 = new Spieler("Spieler1", PunkteAnzeigen /*, this*/);
+            Spieler Spieler2 = new Spieler("Spieler2", PunkteAnzeigen /*, this*/);
+            Spieler Spieler3 = new Spieler("Spieler3", PunkteAnzeigen /*, this*/);
+            Spieler Spieler4 = new Spieler("Spieler4", PunkteAnzeigen /*, this*/);
+            Spieler Spieler5 = new Spieler("Spieler5", PunkteAnzeigen /*, this*/);
+            Spieler Spieler6 = new Spieler("Spieler6", PunkteAnzeigen /*, this*/);
+            Spieler Spieler7 = new Spieler("Spieler7", PunkteAnzeigen /*, this*/);
+            Spieler Spieler8 = new Spieler("Spieler8", PunkteAnzeigen /*, this*/);
+            Spieler Spieler9 = new Spieler("Spieler9", PunkteAnzeigen /*, this*/);
+            Spieler Spieler10 = new Spieler("Spieler10", PunkteAnzeigen /*, this*/);
             ListeSpieler.Add(Spieler1);
             ListeSpieler.Add(Spieler2);
             ListeSpieler.Add(Spieler3);
@@ -319,23 +319,10 @@ namespace Würfeln
             return PunkteGesamt;
         }
 
-        private void PunkteAufListeSchreiben(int Punkte, int Liste)
+        private void PunkteAnzeigen(int SpielerNr, int Punkte)
         {
-            switch (Liste)
-            {
-                //case 1:
-                //    PunkteSpieler1.Add(Punkte);
-                //    break;
-                //case 2:
-                //    PunkteSpieler2.Add(Punkte);
-                //    break;
-                //case 3:
-                //    PunkteSpieler3.Add(Punkte);
-                //    break;
-                //case 4:
-                //    PunkteSpieler4.Add(Punkte);
-                //    break;
-            }        
+            int a = Convert.ToInt32(ListeLabelPunkte[SpielerNr].Text);
+            ListeLabelPunkte[SpielerNr].Text = Convert.ToString(Punkte + a);
         }
 
         private int WerIstSender(object sender)
