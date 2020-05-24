@@ -40,11 +40,10 @@ namespace Würfeln
             this.Dice6 = new Würfeln.Dice();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            
             // 
             // ButtonWeiterWürfeln
             // 
-            this.ButtonWeiterWürfeln.Location = new System.Drawing.Point(527, 206);
+            this.ButtonWeiterWürfeln.Location = new System.Drawing.Point(433, 63);
             this.ButtonWeiterWürfeln.Name = "ButtonWeiterWürfeln";
             this.ButtonWeiterWürfeln.Size = new System.Drawing.Size(168, 28);
             this.ButtonWeiterWürfeln.TabIndex = 49;
@@ -55,7 +54,7 @@ namespace Würfeln
             // LabelNachrichten
             // 
             this.LabelNachrichten.AutoSize = true;
-            this.LabelNachrichten.Location = new System.Drawing.Point(301, 316);
+            this.LabelNachrichten.Location = new System.Drawing.Point(444, 138);
             this.LabelNachrichten.Name = "LabelNachrichten";
             this.LabelNachrichten.Size = new System.Drawing.Size(85, 13);
             this.LabelNachrichten.TabIndex = 50;
@@ -64,7 +63,7 @@ namespace Würfeln
             // Dice1
             // 
             this.Dice1.BackColor = System.Drawing.Color.LightGray;
-            this.Dice1.Location = new System.Drawing.Point(289, 205);
+            this.Dice1.Location = new System.Drawing.Point(432, 27);
             this.Dice1.Name = "Dice1";
             this.Dice1.Size = new System.Drawing.Size(30, 30);
             this.Dice1.TabIndex = 43;
@@ -76,7 +75,7 @@ namespace Würfeln
             // Dice2
             // 
             this.Dice2.BackColor = System.Drawing.Color.LightGray;
-            this.Dice2.Location = new System.Drawing.Point(325, 205);
+            this.Dice2.Location = new System.Drawing.Point(468, 27);
             this.Dice2.Name = "Dice2";
             this.Dice2.Size = new System.Drawing.Size(30, 30);
             this.Dice2.TabIndex = 44;
@@ -88,7 +87,7 @@ namespace Würfeln
             // Dice3
             // 
             this.Dice3.BackColor = System.Drawing.Color.LightGray;
-            this.Dice3.Location = new System.Drawing.Point(361, 205);
+            this.Dice3.Location = new System.Drawing.Point(504, 27);
             this.Dice3.Name = "Dice3";
             this.Dice3.Size = new System.Drawing.Size(30, 30);
             this.Dice3.TabIndex = 45;
@@ -100,7 +99,7 @@ namespace Würfeln
             // Dice4
             // 
             this.Dice4.BackColor = System.Drawing.Color.LightGray;
-            this.Dice4.Location = new System.Drawing.Point(398, 205);
+            this.Dice4.Location = new System.Drawing.Point(541, 27);
             this.Dice4.Name = "Dice4";
             this.Dice4.Size = new System.Drawing.Size(30, 30);
             this.Dice4.TabIndex = 46;
@@ -112,7 +111,7 @@ namespace Würfeln
             // Dice5
             // 
             this.Dice5.BackColor = System.Drawing.Color.LightGray;
-            this.Dice5.Location = new System.Drawing.Point(434, 205);
+            this.Dice5.Location = new System.Drawing.Point(577, 27);
             this.Dice5.Name = "Dice5";
             this.Dice5.Size = new System.Drawing.Size(30, 30);
             this.Dice5.TabIndex = 47;
@@ -124,7 +123,7 @@ namespace Würfeln
             // Dice6
             // 
             this.Dice6.BackColor = System.Drawing.Color.LightGray;
-            this.Dice6.Location = new System.Drawing.Point(470, 205);
+            this.Dice6.Location = new System.Drawing.Point(613, 27);
             this.Dice6.Name = "Dice6";
             this.Dice6.Size = new System.Drawing.Size(30, 30);
             this.Dice6.TabIndex = 48;
@@ -135,9 +134,9 @@ namespace Würfeln
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(721, 206);
+            this.button1.Location = new System.Drawing.Point(725, 27);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(199, 35);
+            this.button1.Size = new System.Drawing.Size(95, 80);
             this.button1.TabIndex = 51;
             this.button1.Text = "Spieler erstellen";
             this.button1.UseVisualStyleBackColor = true;
@@ -147,7 +146,7 @@ namespace Würfeln
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(927, 579);
+            this.ClientSize = new System.Drawing.Size(835, 257);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.LabelNachrichten);
             this.Controls.Add(this.ButtonWeiterWürfeln);
@@ -156,7 +155,7 @@ namespace Würfeln
             this.Controls.Add(this.Dice4);
             this.Controls.Add(this.Dice3);
             this.Controls.Add(this.Dice2);
-            this.Controls.Add(this.Dice1);           
+            this.Controls.Add(this.Dice1);
             this.Name = "Form1";
             this.Text = "zehntausend";
             this.ResumeLayout(false);

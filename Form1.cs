@@ -223,8 +223,7 @@ namespace Würfeln
                 Stempel.Name = ListeLabelSpieler[AngelegterSpieler].Name;
                 Stempel.Size = new System.Drawing.Size(100, 13);
                 Stempel.TabIndex = 0;
-                Stempel.Text = ListeSpieler[AngelegterSpieler].Name;
-                Stempel.Leave += new System.EventHandler(this.LabelSpieler1_Leave);
+                Stempel.Text = ListeSpieler[AngelegterSpieler].Name;                
                 Stempel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelSpieler_MouseClick);
                 ListeLabelSpieler[AngelegterSpieler] = Stempel;               
                 this.Controls.Add(ListeLabelSpieler[AngelegterSpieler]);
@@ -252,7 +251,6 @@ namespace Würfeln
                 Stempel2.Name = ListeLabelRunde[AngelegterSpieler].Name;
                 Stempel2.TabIndex = 0;
                 Stempel2.Text = "Runde: ";
-                Stempel2.Leave += new System.EventHandler(this.LabelSpieler1_Leave);
                 ListeLabelRunde[AngelegterSpieler] = Stempel2;
                 this.Controls.Add(ListeLabelRunde[AngelegterSpieler]);
 
@@ -262,7 +260,6 @@ namespace Würfeln
                 Stempel3.Name = ListeLabelRundeAnzeige[AngelegterSpieler].Name;
                 Stempel3.TabIndex = 0;
                 Stempel3.Text = $"{Runde}";
-                Stempel3.Leave += new System.EventHandler(this.LabelSpieler1_Leave);
                 ListeLabelRunde[AngelegterSpieler] = Stempel3;
                 this.Controls.Add(ListeLabelRunde[AngelegterSpieler]);
 
@@ -271,8 +268,7 @@ namespace Würfeln
                 Stempel4.Location = new System.Drawing.Point(P1 + 280, Reihe + 24 * AngelegterSpieler);
                 Stempel4.Name = ListeLabelPunkte[AngelegterSpieler].Name;
                 Stempel4.TabIndex = 0;
-                Stempel4.Text = "Punkte: ";
-                Stempel4.Leave += new System.EventHandler(this.LabelSpieler1_Leave);               
+                Stempel4.Text = "Punkte: ";              
                 ListeLabelPunkte[AngelegterSpieler] = Stempel4;
                 this.Controls.Add(ListeLabelPunkte[AngelegterSpieler]);
 
@@ -283,42 +279,13 @@ namespace Würfeln
                 Stempel5.TabIndex = 0;
                 Stempel5.TextAlign = System.Drawing.ContentAlignment.TopRight;
                 Stempel5.Text = "123456";
-                Stempel5.Leave += new System.EventHandler(this.LabelSpieler1_Leave);
                 ListeLabelPunkteAnzeige[AngelegterSpieler] = Stempel5;
-                this.Controls.Add(ListeLabelPunkteAnzeige[AngelegterSpieler]);
-                               
+                this.Controls.Add(ListeLabelPunkteAnzeige[AngelegterSpieler]);                              
 
                 AngelegterSpieler++;
             }            
         }
-            
-
-
-        private int GesamtPunkteLesen(int Liste)
-        {
-            int PunkteGesamt = 0;
-            switch (Liste)
-            {
-                //case 1:
-                //    PunkteGesamt = PunkteSpieler1.Sum();
-                //    break;
-                //case 2:
-                //     PunkteGesamt = PunkteSpieler2.Sum();
-                //    break;
-                //case 3:
-                //     PunkteGesamt = PunkteSpieler3.Sum();
-                //    break;
-                //case 4:
-                //     PunkteGesamt = PunkteSpieler4.Sum();
-                //    break;
-                default:
-                    PunkteGesamt = 0;
-                    MessageBox.Show("Gesamtpunkteauslesen mit Fehler");
-                    break;
-            }            
-            return PunkteGesamt;
-        }
-
+         
         private void PunkteAnzeigen(int SpielerNr, int Punkte)
         {
             int a = Convert.ToInt32(ListeLabelPunkte[SpielerNr].Text);
@@ -329,7 +296,10 @@ namespace Würfeln
         {
             string a = sender.ToString();
             int d = 0;
-            d = (a[a.Length - 1]);
+            string c = Convert.ToString(a[a.Length - 1]);
+            d = Int32.Parse(c);
+            //MessageBox.Show(c);
+            //MessageBox.Show(Convert.ToString(d));
             if (d != 0) return d - 1;
             else return 9;
         }
@@ -338,23 +308,35 @@ namespace Würfeln
             int Sender= WerIstSender(sender);
             //if (ComboBoxSpieler1.SelectedIndex == 0)    Erlaubt nur die Benennung eines menschlichen Spielers, nimmt aber Moeglichkeiten und evtl. Spassfaktor
             //{
-            ListeTextBoxSpieler[Sender].Location = new Point(P1, Reihe + 24 * AngelegterSpieler);
+            //ListeTextBoxSpieler[Sender].AutoSize = true;
+            ListeTextBoxSpieler[Sender].Location = new Point(ListeLabelSpieler[Sender].Location.X, ListeLabelSpieler[Sender].Location.Y-2);
             ListeTextBoxSpieler[Sender].Text = ListeLabelSpieler[Sender].Text;
+            ListeTextBoxSpieler[Sender].KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxSpieler_KeyDown);
             ListeTextBoxSpieler[Sender].Visible = true;
+            ListeLabelSpieler[Sender].Visible = false;
             ListeTextBoxSpieler[Sender].AcceptsReturn = false;
+            this.Controls.Add(ListeTextBoxSpieler[Sender]);
             //}
-        }             
+        }
+
+        bool active = false;
         private void TextBoxSpieler_KeyDown(object sender, KeyEventArgs e)
         {
-            int Sender = WerIstSender(sender);
-            if (e.KeyCode == Keys.Enter)
+            int Sender=0;
+            if (!active) 
+            { 
+                Sender = WerIstSender(sender);
+                active = true;
+            }
+            if ((e.KeyCode == Keys.Enter)||(e.KeyCode == Keys.Escape))
             {
                 if (ListeTextBoxSpieler[Sender].Text.Length >= 1) { ListeLabelSpieler[Sender].Text = ListeTextBoxSpieler[Sender].Text; }
-                else ListeLabelSpieler[Sender].Text = "Ohne Namen";
-                ListeTextBoxSpieler[Sender].Visible = false;
+                else ListeLabelSpieler[Sender].Text = "Ohne Namen";                
                 e.Handled = true;
                 e.SuppressKeyPress = true;
-            }            
+                ListeTextBoxSpieler[Sender].Visible = false;
+                ListeLabelSpieler[Sender].Visible = true;
+            } 
         }
         private void ComboBoxSpieler_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -374,18 +356,6 @@ namespace Würfeln
                     ListeLabelSpieler[Sender].Text = "KI-risiko";
                     break;               
             }
-        }
-       
-
-
-        private void ComboBoxSpieler1_Leave(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void LabelSpieler1_Leave(object sender, EventArgs e)
-        {
-           
         }
                         
         private void Dice1_Click(object sender, EventArgs e)
@@ -498,27 +468,3 @@ namespace Würfeln
         }
     }
 }
-
-
-
-
-
-
-//private void NameSpieler(string a, int b)
-//{
-//    switch (b)
-//    {
-//        case 1:
-//            LabelSpieler1.Text = a;
-//            break;
-//        case 2:
-//            LabelSpieler2.Text = a;
-//            break;
-//        case 3:
-//            LabelSpieler3.Text = a;
-//            break;
-//        case 4:
-//            LabelSpieler4.Text = a;
-//            break;
-//    }                
-//}
