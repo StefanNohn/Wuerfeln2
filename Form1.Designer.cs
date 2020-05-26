@@ -70,7 +70,7 @@ namespace Würfeln
             this.Dice1.Text = "X";
             this.Dice1.Used = false;
             this.Dice1.UseVisualStyleBackColor = true;
-            this.Dice1.Click += new System.EventHandler(this.Dice1_Click);
+            this.Dice1.Click += new System.EventHandler(this.Dice_Click);
             // 
             // Dice2
             // 
@@ -82,7 +82,7 @@ namespace Würfeln
             this.Dice2.Text = "X";
             this.Dice2.Used = false;
             this.Dice2.UseVisualStyleBackColor = true;
-            this.Dice2.Click += new System.EventHandler(this.Dice2_Click);
+            this.Dice2.Click += new System.EventHandler(this.Dice_Click);
             // 
             // Dice3
             // 
@@ -94,7 +94,7 @@ namespace Würfeln
             this.Dice3.Text = "X";
             this.Dice3.Used = false;
             this.Dice3.UseVisualStyleBackColor = true;
-            this.Dice3.Click += new System.EventHandler(this.Dice3_Click);
+            this.Dice3.Click += new System.EventHandler(this.Dice_Click);
             // 
             // Dice4
             // 
@@ -106,7 +106,7 @@ namespace Würfeln
             this.Dice4.Text = "X";
             this.Dice4.Used = false;
             this.Dice4.UseVisualStyleBackColor = true;
-            this.Dice4.Click += new System.EventHandler(this.Dice4_Click);
+            this.Dice4.Click += new System.EventHandler(this.Dice_Click);
             // 
             // Dice5
             // 
@@ -118,7 +118,7 @@ namespace Würfeln
             this.Dice5.Text = "X";
             this.Dice5.Used = false;
             this.Dice5.UseVisualStyleBackColor = true;
-            this.Dice5.Click += new System.EventHandler(this.Dice5_Click);
+            this.Dice5.Click += new System.EventHandler(this.Dice_Click);
             // 
             // Dice6
             // 
@@ -130,7 +130,7 @@ namespace Würfeln
             this.Dice6.Text = "X";
             this.Dice6.Used = false;
             this.Dice6.UseVisualStyleBackColor = true;
-            this.Dice6.Click += new System.EventHandler(this.Dice6_Click);
+            this.Dice6.Click += new System.EventHandler(this.Dice_Click);
             // 
             // button1
             // 

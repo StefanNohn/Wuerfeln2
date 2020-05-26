@@ -31,7 +31,16 @@ namespace Würfeln
         public bool Used
         {
             get { return _Used; }
-            set { _Used = value; }
+            set 
+            {
+                _Used = value;
+                if (value)
+                {
+                    BackColor = Color.Red;
+                }
+                else BackColor = Color.LightGray;
+
+            }
         }
 
         private static Random _rnd;

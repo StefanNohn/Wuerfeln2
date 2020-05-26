@@ -187,6 +187,13 @@ namespace Würfeln
             ListeLabelPunkteAnzeige.Add(LabelPunkteAnzeige8);
             ListeLabelPunkteAnzeige.Add(LabelPunkteAnzeige9);
             ListeLabelPunkteAnzeige.Add(LabelPunkteAnzeige10);
+
+            ListeDice.Add(Dice1);
+            ListeDice.Add(Dice2);
+            ListeDice.Add(Dice3);
+            ListeDice.Add(Dice4);
+            ListeDice.Add(Dice5);
+            ListeDice.Add(Dice6);
         }
 
         private List<Spieler> ListeSpieler = new List<Spieler>();
@@ -197,6 +204,7 @@ namespace Würfeln
         private List<Label> ListeLabelPunkte = new List<Label>();
         private List<Label> ListeLabelPunkteAnzeige = new List<Label>();
         private List<TextBox> ListeTextBoxSpieler = new List<TextBox>();
+        private List<Dice> ListeDice = new List<Dice>();
 
         private int _Runde=0;
         public int Runde
@@ -293,15 +301,14 @@ namespace Würfeln
         }
 
         private int WerIstSender(object sender)
-        {
-            string a = sender.ToString();
-            int d = 0;
-            string c = Convert.ToString(a[a.Length - 1]);
-            d = Int32.Parse(c);
-            //MessageBox.Show(c);
-            //MessageBox.Show(Convert.ToString(d));
-            if (d != 0) return d - 1;
-            else return 9;
+        {           
+            int a = 10;
+            for (int i=0;i<10;i++)
+            {
+                if ((sender == ListeLabelSpieler[i]) || (sender == ListeTextBoxSpieler[i]) || (sender== ListeComboBoxSpieler[i]))
+                { a= i; }
+            };
+            return a;
         }
         private void LabelSpieler_MouseClick(object sender, MouseEventArgs e)
         {
@@ -318,19 +325,16 @@ namespace Würfeln
             this.Controls.Add(ListeTextBoxSpieler[Sender]);
             //}
         }
-
-        bool active = false;
         private void TextBoxSpieler_KeyDown(object sender, KeyEventArgs e)
         {
-            int Sender=0;
-            if (!active) 
-            { 
-                Sender = WerIstSender(sender);
-                active = true;
-            }
+            int Sender = WerIstSender(sender);
+               
             if ((e.KeyCode == Keys.Enter)||(e.KeyCode == Keys.Escape))
             {
-                if (ListeTextBoxSpieler[Sender].Text.Length >= 1) { ListeLabelSpieler[Sender].Text = ListeTextBoxSpieler[Sender].Text; }
+                if (ListeTextBoxSpieler[Sender].Text.Length >= 1) 
+                { 
+                    ListeLabelSpieler[Sender].Text = ListeTextBoxSpieler[Sender].Text; 
+                }
                 else ListeLabelSpieler[Sender].Text = "Ohne Namen";                
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -341,83 +345,34 @@ namespace Würfeln
         private void ComboBoxSpieler_SelectedValueChanged(object sender, EventArgs e)
         {
             int Sender = WerIstSender(sender);
-            switch (ListeComboBoxSpieler[Sender].SelectedIndex)
-            {
-                case 0:
-                    // ListeLabelSpieler[Sender].Text = "Mensch 1";
-                    break;
-                case 1:
-                    ListeLabelSpieler[Sender].Text = "KI-ängstlich";
-                    break;
-                case 2:
-                    ListeLabelSpieler[Sender].Text = "KI-normal";
-                    break;
-                case 3:
-                    ListeLabelSpieler[Sender].Text = "KI-risiko";
-                    break;               
-            }
+            ListeLabelSpieler[Sender].Text = ListeComboBoxSpieler[Sender].Items[ListeComboBoxSpieler[Sender].SelectedIndex].ToString();           
         }
-                        
-        private void Dice1_Click(object sender, EventArgs e)
+               
+        private int WelcherDice(object sender)
         {
-            if (!Dice1.Used)
+            int a=11;
+            for (int i=0;i<6;i++)
             {
-                if (Dice1.BackColor == Color.Red)
-                    Dice1.BackColor = Color.LightGray;
-                else Dice1.BackColor = Color.Red;
+                if (sender == ListeDice[i])
+                {
+                    a = i;
+                }
             }
+            return a;
         }
-
-        private void Dice2_Click(object sender, EventArgs e)
+        private void Clicked(int Sender)
         {
-            if (!Dice2.Used)
+            if (!ListeDice[Sender].Used)
             {
-                if (Dice2.BackColor == Color.Red)
-                    Dice2.BackColor = Color.LightGray;
-                else Dice2.BackColor = Color.Red;
+                ListeDice[Sender].Used = true;
             }
+            else ListeDice[Sender].Used = false;
         }
-
-        private void Dice3_Click(object sender, EventArgs e)
+        private void Dice_Click(object sender, EventArgs e)
         {
-            if (!Dice3.Used)
-            {
-                if (Dice3.BackColor == Color.Red)
-                    Dice3.BackColor = Color.LightGray;
-                else Dice3.BackColor = Color.Red;
-            }
+            int Sender=WelcherDice(sender);
+            Clicked(Sender);            
         }
-
-        private void Dice4_Click(object sender, EventArgs e)
-        {
-            if (!Dice4.Used)
-            {
-                if (Dice4.BackColor == Color.Red)
-                    Dice4.BackColor = Color.LightGray;
-                else Dice4.BackColor = Color.Red;
-            }
-        }
-
-        private void Dice5_Click(object sender, EventArgs e)
-        {
-            if (!Dice5.Used)
-            {
-                if (Dice5.BackColor == Color.Red)
-                    Dice5.BackColor = Color.LightGray;
-                else Dice5.BackColor = Color.Red;
-            }
-        }
-
-        private void Dice6_Click(object sender, EventArgs e)
-        {
-            if (!Dice6.Used)
-            {
-                if (Dice6.BackColor == Color.Red)
-                    Dice6.BackColor = Color.LightGray;
-                else Dice6.BackColor = Color.Red;
-            }
-        }
-
 
         private static int _Anzahl;
         public static int Anzahl
