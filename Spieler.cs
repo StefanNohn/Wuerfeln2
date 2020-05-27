@@ -8,22 +8,14 @@ using System.Windows.Forms;
 namespace Würfeln
 {
     public class Spieler
-    {
-        private List<Spieler> Namesliste = new List<Spieler>();
+    {        
+        private List<int> ListePunkte = new List<int>();
 
-        public delegate void Punktannahme(int Punkte, int Liste);
-        private Punktannahme Punkteannahme = null;
-        public void Punkteschreiben(Punktannahme a)
+        public delegate void PunkteAusgabe(int SpielerNr, int Punkte);
+        private PunkteAusgabe _PunkteAufLabel = null;
+        public void PunkteAufLabel(PunkteAusgabe a)
         {
-            Punkteannahme += a;
-        }
-
-
-        public delegate int Punkteauslesen(int Liste);
-        private Punkteauslesen Punktelesen = null;
-        public void Punktegesamtlesen(Punkteauslesen a)
-        {
-            Punktelesen += a;
+            _PunkteAufLabel += a;
         }
 
         private int _Punktegesamt;
@@ -31,25 +23,10 @@ namespace Würfeln
         {
             get
             {
-                switch (Name)
-                {
-                    case "Spieler1":
-                        return Punktelesen(1);
-                    case "Spieler2":
-                        return Punktelesen(2);
-                    case "Spieler3":
-                        return Punktelesen(3);
-                    case "Spieler4":
-                        return Punktelesen(4);
-                    default:
-                        MessageBox.Show("Gesamtpunkteauslesen mit Fehler");
-                        return 0;
-                }
-
+                return ListePunkte.Sum();
             }
             set { }
         }
-
 
         private string _Name;
         public string Name
@@ -58,11 +35,14 @@ namespace Würfeln
             set { _Name = value; }
         }
 
-        public Spieler(string a, Punktannahme b, Punkteauslesen c)
+        public Spieler()
+        {}
+
+        public Spieler(string a, PunkteAusgabe b /*, Form1 d*/)
         {
             Name = a;
-            Punkteschreiben(b);
-            Punktegesamtlesen(c);
+            PunkteAufLabel(b);           
+            
         }
     }
 }
