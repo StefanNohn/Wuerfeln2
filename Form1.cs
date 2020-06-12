@@ -19,16 +19,16 @@ namespace Würfeln
         {
             InitializeComponent();
 
-            Spieler Spieler1 = new Spieler("Spieler1", PunkteAnzeigen /*, this*/);
-            Spieler Spieler2 = new Spieler("Spieler2", PunkteAnzeigen /*, this*/);
-            Spieler Spieler3 = new Spieler("Spieler3", PunkteAnzeigen /*, this*/);
-            Spieler Spieler4 = new Spieler("Spieler4", PunkteAnzeigen /*, this*/);
-            Spieler Spieler5 = new Spieler("Spieler5", PunkteAnzeigen /*, this*/);
-            Spieler Spieler6 = new Spieler("Spieler6", PunkteAnzeigen /*, this*/);
-            Spieler Spieler7 = new Spieler("Spieler7", PunkteAnzeigen /*, this*/);
-            Spieler Spieler8 = new Spieler("Spieler8", PunkteAnzeigen /*, this*/);
-            Spieler Spieler9 = new Spieler("Spieler9", PunkteAnzeigen /*, this*/);
-            Spieler Spieler10 = new Spieler("Spieler10", PunkteAnzeigen /*, this*/);
+            Spieler Spieler1 = new Spieler("Spieler1", PunkteAnzeigen, SpielerAktivInaktiv /*, this*/);
+            Spieler Spieler2 = new Spieler("Spieler2", PunkteAnzeigen, SpielerAktivInaktiv /*, this*/);
+            Spieler Spieler3 = new Spieler("Spieler3", PunkteAnzeigen, SpielerAktivInaktiv /*, this*/);
+            Spieler Spieler4 = new Spieler("Spieler4", PunkteAnzeigen, SpielerAktivInaktiv /*, this*/);
+            Spieler Spieler5 = new Spieler("Spieler5", PunkteAnzeigen, SpielerAktivInaktiv /*, this*/);
+            Spieler Spieler6 = new Spieler("Spieler6", PunkteAnzeigen, SpielerAktivInaktiv  /*, this*/);
+            Spieler Spieler7 = new Spieler("Spieler7", PunkteAnzeigen, SpielerAktivInaktiv /*, this*/);
+            Spieler Spieler8 = new Spieler("Spieler8", PunkteAnzeigen, SpielerAktivInaktiv /*, this*/);
+            Spieler Spieler9 = new Spieler("Spieler9", PunkteAnzeigen, SpielerAktivInaktiv  /*, this*/);
+            Spieler Spieler10 = new Spieler("Spieler10", PunkteAnzeigen, SpielerAktivInaktiv /*, this*/);
             ListeSpieler.Add(Spieler1);
             ListeSpieler.Add(Spieler2);
             ListeSpieler.Add(Spieler3);
@@ -305,7 +305,7 @@ namespace Würfeln
             int a = 10;
             for (int i=0;i<10;i++)
             {
-                if ((sender == ListeLabelSpieler[i]) || (sender == ListeTextBoxSpieler[i]) || (sender== ListeComboBoxSpieler[i]))
+                if ((sender == ListeLabelSpieler[i]) || (sender == ListeTextBoxSpieler[i]) || (sender== ListeComboBoxSpieler[i]) || (sender == ListeSpieler[i]))
                 { a= i; }
             };
             return a;
@@ -417,9 +417,29 @@ namespace Würfeln
             else LabelNachrichten.Text = "Es muss ein Würfel gewertet werden!";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ButtonSpielerHinzufügen_Click(object sender, EventArgs e)
         {
             SpielerHinzufügen();
+        }
+
+        private void SpielerAktivInaktiv(object SpielerName, bool AktivInaktiv)
+        {
+            int Sender = WerIstSender(SpielerName);
+            if (AktivInaktiv) ListeLabelSpieler[Sender].ForeColor = Color.Red;
+            else ListeLabelSpieler[Sender].ForeColor = Color.Black;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            if (ListeSpieler[0].Aktiv) ListeSpieler[0].Aktiv=false;
+            else ListeSpieler[0].Aktiv = true;
+        }
+
+        private void ButtonSpielSteuerung_Click(object sender, EventArgs e)
+        {
+            Spieler1.Aktiv = true;
+            ListeSpieler[0].Aktiv = true;
         }
     }
 }

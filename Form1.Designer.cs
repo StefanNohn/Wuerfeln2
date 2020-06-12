@@ -38,14 +38,16 @@ namespace Würfeln
             this.Dice4 = new Würfeln.Dice();
             this.Dice5 = new Würfeln.Dice();
             this.Dice6 = new Würfeln.Dice();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ButtonSpielerHinzufügen = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.ButtonSpielStarten = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ButtonWeiterWürfeln
             // 
-            this.ButtonWeiterWürfeln.Location = new System.Drawing.Point(433, 63);
+            this.ButtonWeiterWürfeln.Location = new System.Drawing.Point(432, 63);
             this.ButtonWeiterWürfeln.Name = "ButtonWeiterWürfeln";
-            this.ButtonWeiterWürfeln.Size = new System.Drawing.Size(168, 28);
+            this.ButtonWeiterWürfeln.Size = new System.Drawing.Size(169, 28);
             this.ButtonWeiterWürfeln.TabIndex = 49;
             this.ButtonWeiterWürfeln.Text = "Würfeln";
             this.ButtonWeiterWürfeln.UseVisualStyleBackColor = true;
@@ -132,22 +134,44 @@ namespace Würfeln
             this.Dice6.UseVisualStyleBackColor = true;
             this.Dice6.Click += new System.EventHandler(this.Dice_Click);
             // 
-            // button1
+            // ButtonSpielerHinzufügen
             // 
-            this.button1.Location = new System.Drawing.Point(725, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 80);
-            this.button1.TabIndex = 51;
-            this.button1.Text = "Spieler erstellen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.ButtonSpielerHinzufügen.Location = new System.Drawing.Point(432, 165);
+            this.ButtonSpielerHinzufügen.Name = "ButtonSpielerHinzufügen";
+            this.ButtonSpielerHinzufügen.Size = new System.Drawing.Size(95, 80);
+            this.ButtonSpielerHinzufügen.TabIndex = 51;
+            this.ButtonSpielerHinzufügen.Text = "Spieler hinzufügen";
+            this.ButtonSpielerHinzufügen.UseVisualStyleBackColor = true;
+            this.ButtonSpielerHinzufügen.Click += new System.EventHandler(this.ButtonSpielSteuerung_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(706, 44);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(117, 66);
+            this.button2.TabIndex = 52;
+            this.button2.Text = "Aktiv/ Inaktiv Spieler 1";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // ButtonSpielStarten
+            // 
+            this.ButtonSpielStarten.Location = new System.Drawing.Point(541, 165);
+            this.ButtonSpielStarten.Name = "ButtonSpielStarten";
+            this.ButtonSpielStarten.Size = new System.Drawing.Size(95, 80);
+            this.ButtonSpielStarten.TabIndex = 53;
+            this.ButtonSpielStarten.Text = "Spiel starten";
+            this.ButtonSpielStarten.UseVisualStyleBackColor = true;
+            this.ButtonSpielStarten.Click += new System.EventHandler(this.ButtonSpielSteuerung_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(835, 257);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ButtonSpielStarten);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ButtonSpielerHinzufügen);
             this.Controls.Add(this.LabelNachrichten);
             this.Controls.Add(this.ButtonWeiterWürfeln);
             this.Controls.Add(this.Dice6);
@@ -173,7 +197,9 @@ namespace Würfeln
         public Dice Dice6;
         private System.Windows.Forms.Button ButtonWeiterWürfeln;
         private System.Windows.Forms.Label LabelNachrichten;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ButtonSpielerHinzufügen;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ButtonSpielStarten;
     }
 }
 
