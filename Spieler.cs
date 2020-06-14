@@ -24,45 +24,11 @@ namespace Würfeln
             _AktivInaktiv += a;
         }
 
-        //private int _Punktegesamt;
-        //public int Punktegesamt
-        //{
-        //    get
-        //    {
-        //        switch (Name)
-        //        {
-        //            case "Spieler1":
-        //                return Punktelesen(1);
-        //            case "Spieler2":
-        //                return Punktelesen(2);
-        //            case "Spieler3":
-        //                return Punktelesen(3);
-        //            case "Spieler4":
-        //                return Punktelesen(4);
-        //            default:
-        //                MessageBox.Show("Gesamtpunkteauslesen mit Fehler");
-        //                return 0;
-        //        }
-        //        return ListePunkte.Sum();
-        //    }
-        //    set { }
-        //}
-        
         private string _Name;
         public string Name
         {
             get { return _Name; }
             set { _Name = value; }
-        }
-          
-        private bool _Used;
-        public bool Used
-        {
-            get { return _Used; }
-            set
-            {
-                _Used = value;                
-            }
         }
 
         private bool _Aktiv;
@@ -92,6 +58,7 @@ namespace Würfeln
             PunkteAufLabel(b);
             ListePunkte.Add(0);
             AktivInaktiv(c);
+            //Aktiv = false;           
         }
     }
 }

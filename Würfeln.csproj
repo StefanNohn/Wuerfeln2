@@ -46,9 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Anzeige.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Dice.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -39,6 +39,7 @@ namespace Würfeln
             ListeSpieler.Add(Spieler8);
             ListeSpieler.Add(Spieler9);
             ListeSpieler.Add(Spieler10);
+           
 
             Label LabelSpieler1Name = new Label();
             Label LabelSpieler2Name = new Label();
@@ -205,6 +206,15 @@ namespace Würfeln
         private List<Label> ListeLabelPunkteAnzeige = new List<Label>();
         private List<TextBox> ListeTextBoxSpieler = new List<TextBox>();
         private List<Dice> ListeDice = new List<Dice>();
+
+        
+        public void SpielerAnfangInaktiv()
+        { 
+        for (int i=0;i<10;i++)
+            {
+                ListeSpieler[1].Aktiv = false;              
+            }
+        }
 
         private int _Runde=0;
         public int Runde
@@ -436,10 +446,24 @@ namespace Würfeln
             else ListeSpieler[0].Aktiv = true;
         }
 
+        private int _SpielerAktuell;
+        public int SpielerAktuell
+        {
+            get { return _SpielerAktuell; }
+            set { _SpielerAktuell = value; }
+        }
         private void ButtonSpielSteuerung_Click(object sender, EventArgs e)
         {
-            Spieler1.Aktiv = true;
-            ListeSpieler[0].Aktiv = true;
+            if (Runde == 0)
+            {
+                SpielerAnfangInaktiv();
+                Runde = 1;
+                ListeSpieler[0].Aktiv = true;
+                SpielerAktuell = 0;
+                ButtonSpielerHinzufügen.Visible = false;
+                ButtonSpielSteuerung.Text = "Nächster Spieler";
+            }
+
         }
     }
 }
