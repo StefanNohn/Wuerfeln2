@@ -8,8 +8,10 @@ using System.Linq;
 //using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Timer = System.Threading.Timer;
 
 namespace Würfeln
 {
@@ -206,15 +208,6 @@ namespace Würfeln
         private List<Label> ListeLabelPunkteAnzeige = new List<Label>();
         private List<TextBox> ListeTextBoxSpieler = new List<TextBox>();
         private List<Dice> ListeDice = new List<Dice>();
-
-        
-        public void SpielerAnfangInaktiv()
-        { 
-        for (int i=0;i<10;i++)
-            {
-                ListeSpieler[1].Aktiv = false;              
-            }
-        }
 
         private int _Runde=0;
         public int Runde
@@ -441,9 +434,19 @@ namespace Würfeln
 
         private void button2_Click(object sender, EventArgs e)
         {
+            LabelNachrichten.Text = "Hallo!";
             
-            if (ListeSpieler[0].Aktiv) ListeSpieler[0].Aktiv=false;
-            else ListeSpieler[0].Aktiv = true;
+            //if (ListeSpieler[0].Aktiv) ListeSpieler[0].Aktiv=false;
+            //else ListeSpieler[0].Aktiv = true;
+        }
+
+       
+        public void NachrichtAnzeigen(string Nachricht)
+        {
+            LabelNachrichten.Text = Nachricht;
+            LabelNachrichten.Visible = true;
+            
+                        
         }
 
         private int _SpielerAktuell;
@@ -451,6 +454,13 @@ namespace Würfeln
         {
             get { return _SpielerAktuell; }
             set { _SpielerAktuell = value; }
+        }
+        public void SpielerAnfangInaktiv()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                ListeSpieler[i].Aktiv = false;
+            }
         }
         private void ButtonSpielSteuerung_Click(object sender, EventArgs e)
         {
@@ -462,8 +472,20 @@ namespace Würfeln
                 SpielerAktuell = 0;
                 ButtonSpielerHinzufügen.Visible = false;
                 ButtonSpielSteuerung.Text = "Nächster Spieler";
+                LabelNachrichten.Visible = false;
             }
+        }
 
+        //readonly Thread warteTimer = new Thread(new ThreadStart(warteTimer()));
+        void warteTimer()
+        {
+            Thread.Sleep(10000);
+        }
+        private void LabelNachrichten_TextChanged(object sender, EventArgs e)
+        {
+            LabelNachrichten.Visible = true;
+            warteTimer();
+            LabelNachrichten.Visible = false;               
         }
     }
 }

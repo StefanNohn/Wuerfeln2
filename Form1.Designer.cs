@@ -61,6 +61,7 @@ namespace Würfeln
             this.LabelNachrichten.Size = new System.Drawing.Size(85, 13);
             this.LabelNachrichten.TabIndex = 50;
             this.LabelNachrichten.Text = "Nachrichtentafel";
+            this.LabelNachrichten.TextChanged += new System.EventHandler(this.LabelNachrichten_TextChanged);
             // 
             // ButtonSpielerHinzufügen
             // 

@@ -40,11 +40,11 @@ namespace Würfeln
                 _Aktiv = value;
                 if (_Aktiv)
                 {
-                    _AktivInaktiv(this, false);
+                    _AktivInaktiv(this, true);
                 }
                 if (!_Aktiv)
                 {
-                    _AktivInaktiv(this, true);
+                    _AktivInaktiv(this, false);
                 }
             }
         }
