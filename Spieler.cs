@@ -52,9 +52,9 @@ namespace Würfeln
         public Spieler()
         {}
 
-        public Spieler(string a, PunkteAusgabe b, SpielerStatus c /*, Form1 d*/)
+        public Spieler(PunkteAusgabe b, SpielerStatus c /*, Form1 d*/)
         {
-            Name = a;
+            Name = "Neuer Spieler";
             PunkteAufLabel(b);
             ListePunkte.Add(0);
             AktivInaktiv(c);
