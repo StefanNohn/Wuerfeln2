@@ -33,13 +33,7 @@ namespace Würfeln
             get { return _Used; }
             set 
             {
-                _Used = value;
-                if (value)
-                {
-                    BackColor = Color.Red;
-                }
-                else BackColor = Color.LightGray;
-
+                _Used = value; 
             }
         }
 

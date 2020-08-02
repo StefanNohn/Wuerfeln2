@@ -10,22 +10,18 @@ namespace Würfeln
     public class Spieler
     {        
         private List<int> ListePunkte = new List<int>();
-
+               
         public delegate void PunkteAusgabe(int SpielerNr, int Punkte);
         private PunkteAusgabe _PunkteAufLabel = null;
         public void PunkteAufLabel(PunkteAusgabe a)
         {
             _PunkteAufLabel += a;
         }
-
-        private int _Punktegesamt;
-        public int Punktegesamt
+        public delegate void SpielerStatus(object Spieler, bool AktivInaktiv);
+        private SpielerStatus _AktivInaktiv;
+        public void AktivInaktiv(SpielerStatus a)
         {
-            get
-            {
-                return ListePunkte.Sum();
-            }
-            set { }
+            _AktivInaktiv += a;
         }
 
         private string _Name;
@@ -35,14 +31,34 @@ namespace Würfeln
             set { _Name = value; }
         }
 
+        private bool _Aktiv;
+        public bool Aktiv
+        {
+            get { return _Aktiv; }
+            set
+            {
+                _Aktiv = value;
+                if (_Aktiv)
+                {
+                    _AktivInaktiv(this, true);
+                }
+                if (!_Aktiv)
+                {
+                    _AktivInaktiv(this, false);
+                }
+            }
+        }
+
         public Spieler()
         {}
 
-        public Spieler(string a, PunkteAusgabe b /*, Form1 d*/)
+        public Spieler(PunkteAusgabe b, SpielerStatus c /*, Form1 d*/)
         {
-            Name = a;
-            PunkteAufLabel(b);           
-            
+            Name = "Neuer Spieler";
+            PunkteAufLabel(b);
+            ListePunkte.Add(0);
+            AktivInaktiv(c);
+            //Aktiv = false;           
         }
     }
 }
